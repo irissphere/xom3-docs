@@ -1,1 +1,5 @@
-{\n  "version": 2,\n  "name": "xom3-docs",\n  "buildCommand": ""\n}
+{
+  "version": 2,
+  "name": "xom3-docs",
+  "buildCommand": ""
+}
