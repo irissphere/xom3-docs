@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Reference - XOM3 Documentation</title>
+  <meta name="description" content="Complete XOM3 API reference - REST endpoints, authentication, SDKs, and code examples.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+  <!-- Sacred Geometry Background -->
+  <div class="sacred-bg">
+    <div class="grid-lines"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="geometry-shape hexagon"></div>
+    <div class="geometry-shape triangle"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="8" fill="url(#logo-gradient)"/>
+          <path d="M12 14L20 10L28 14V20L20 24L12 20V14Z" stroke="#050508" stroke-width="2" fill="none"/>
+          <path d="M20 24V30" stroke="#050508" stroke-width="2"/>
+          <path d="M12 14L20 18L28 14" stroke="#050508" stroke-width="2"/>
+          <circle cx="20" cy="18" r="2" fill="#050508"/>
+          <defs>
+            <linearGradient id="logo-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#00D9FF"/>
+              <stop offset="1" stop-color="#7C3AED"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="nav-logo-text">XOM3</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/getting-started">Docs</a></li>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/api-reference" class="active">API</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/faq">FAQ</a></li>
+        <li><a href="https://app.xom3.org" class="nav-cta">Get Started</a></li>
+      </ul>
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="docs-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-section">
+          <h4 class="sidebar-title">Getting Started</h4>
+          <ul class="sidebar-links">
+            <li><a href="#introduction" class="active">Introduction</a></li>
+            <li><a href="#authentication">Authentication</a></li>
+            <li><a href="#rate-limits">Rate Limits</a></li>
+            <li><a href="#errors">Error Handling</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h4 class="sidebar-title">Workflows</h4>
+          <ul class="sidebar-links">
+            <li><a href="#list-workflows">List Workflows</a></li>
+            <li><a href="#create-workflow">Create Workflow</a></li>
+            <li><a href="#get-workflow">Get Workflow</a></li>
+            <li><a href="#update-workflow">Update Workflow</a></li>
+            <li><a href="#delete-workflow">Delete Workflow</a></li>
+            <li><a href="#trigger-workflow">Trigger Workflow</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h4 class="sidebar-title">Executions</h4>
+          <ul class="sidebar-links">
+            <li><a href="#list-executions">List Executions</a></li>
+            <li><a href="#get-execution">Get Execution</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h4 class="sidebar-title">AI Agents</h4>
+          <ul class="sidebar-links">
+            <li><a href="#create-agent">Create Agent</a></li>
+            <li><a href="#agent-chat">Chat with Agent</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <div class="docs-content">
+        <h1 id="introduction">API Reference</h1>
+        <p>The XOM3 API is organized around REST. Our API has predictable resource-oriented URLs, accepts JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.</p>
+
+        <div class="callout callout-info">
+          <div class="callout-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 16v-4"/>
+              <path d="M12 8h.01"/>
+            </svg>
+          </div>
+          <div>
+            <div class="callout-title">Base URL</div>
+            <div class="callout-content"><code>https://api.xom3.org/v1</code></div>
+          </div>
+        </div>
+
+        <h2 id="authentication">Authentication</h2>
+        <p>The XOM3 API uses API keys to authenticate requests. You can view and manage your API keys in the <a href="https://app.xom3.org/settings/api">XOM3 Dashboard</a>.</p>
+        <p>Authentication is performed via HTTP Bearer auth. Include your API key in the <code>Authorization</code> header:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">HTTP Header</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>Authorization: Bearer xom3_sk_live_xxxxxxxxxxxxx</pre>
+        </div>
+
+        <p>All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.</p>
+
+        <h2 id="rate-limits">Rate Limits</h2>
+        <p>The XOM3 API implements rate limiting to ensure fair usage and stability:</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Plan</th>
+                <th>Requests/minute</th>
+                <th>Requests/day</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Free</td>
+                <td>60</td>
+                <td>1,000</td>
+              </tr>
+              <tr>
+                <td>Pro</td>
+                <td>300</td>
+                <td>50,000</td>
+              </tr>
+              <tr>
+                <td>Enterprise</td>
+                <td>Custom</td>
+                <td>Unlimited</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Rate limit information is included in response headers:</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">Response Headers</span>
+          </div>
+          <pre>X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 58
+X-RateLimit-Reset: 1640995200</pre>
+        </div>
+
+        <h2 id="errors">Error Handling</h2>
+        <p>XOM3 uses conventional HTTP response codes to indicate the success or failure of an API request:</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>200</code></td>
+                <td>Success - Request completed successfully</td>
+              </tr>
+              <tr>
+                <td><code>201</code></td>
+                <td>Created - Resource created successfully</td>
+              </tr>
+              <tr>
+                <td><code>400</code></td>
+                <td>Bad Request - Invalid parameters</td>
+              </tr>
+              <tr>
+                <td><code>401</code></td>
+                <td>Unauthorized - Invalid API key</td>
+              </tr>
+              <tr>
+                <td><code>403</code></td>
+                <td>Forbidden - Insufficient permissions</td>
+              </tr>
+              <tr>
+                <td><code>404</code></td>
+                <td>Not Found - Resource doesn't exist</td>
+              </tr>
+              <tr>
+                <td><code>429</code></td>
+                <td>Too Many Requests - Rate limit exceeded</td>
+              </tr>
+              <tr>
+                <td><code>500</code></td>
+                <td>Server Error - Something went wrong</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="list-workflows">List Workflows</h2>
+        <div class="api-endpoint">
+          <div class="api-method">
+            <span class="method-badge method-get">GET</span>
+            <span class="api-path">/v1/workflows</span>
+          </div>
+          <p>Returns a list of all workflows in your account.</p>
+        </div>
+
+        <h3>Query Parameters</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>limit</code></td>
+                <td>integer</td>
+                <td>Maximum number of workflows to return (default: 20, max: 100)</td>
+              </tr>
+              <tr>
+                <td><code>offset</code></td>
+                <td>integer</td>
+                <td>Number of workflows to skip (for pagination)</td>
+              </tr>
+              <tr>
+                <td><code>status</code></td>
+                <td>string</td>
+                <td>Filter by status: <code>active</code>, <code>inactive</code>, <code>draft</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Example Request</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">cURL</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>curl https://api.xom3.org/v1/workflows \
+  -H "Authorization: Bearer xom3_sk_live_xxxxx"</pre>
+        </div>
+
+        <h3>Example Response</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">JSON</span>
+          </div>
+          <pre>{
+  "data": [
+    {
+      "id": "wf_abc123",
+      "name": "Customer Support Agent",
+      "description": "AI-powered customer support",
+      "status": "active",
+      "created_at": "2024-01-15T10:30:00Z",
+      "updated_at": "2024-01-15T10:30:00Z",
+      "executions_count": 1523
+    }
+  ],
+  "total": 1,
+  "limit": 20,
+  "offset": 0
+}</pre>
+        </div>
+
+        <h2 id="create-workflow">Create Workflow</h2>
+        <div class="api-endpoint">
+          <div class="api-method">
+            <span class="method-badge method-post">POST</span>
+            <span class="api-path">/v1/workflows</span>
+          </div>
+          <p>Creates a new workflow with the specified configuration.</p>
+        </div>
+
+        <h3>Request Body</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">JSON</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>{
+  "name": "Customer Support Agent",
+  "description": "AI-powered customer support automation",
+  "triggers": [
+    {
+      "type": "webhook",
+      "config": {
+        "path": "/support",
+        "method": "POST"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "type": "ai_classify",
+      "config": {
+        "categories": ["billing", "technical", "general"]
+      }
+    },
+    {
+      "type": "ai_respond",
+      "config": {
+        "model": "gpt-4",
+        "systemPrompt": "You are a helpful support agent..."
+      }
+    }
+  ]
+}</pre>
+        </div>
+
+        <h2 id="get-workflow">Get Workflow</h2>
+        <div class="api-endpoint">
+          <div class="api-method">
+            <span class="method-badge method-get">GET</span>
+            <span class="api-path">/v1/workflows/{workflow_id}</span>
+          </div>
+          <p>Retrieves the details of an existing workflow.</p>
+        </div>
+
+        <h2 id="update-workflow">Update Workflow</h2>
+        <div class="api-endpoint">
+          <div class="api-method">
+            <span class="method-badge method-put">PUT</span>
+            <span class="api-path">/v1/workflows/{workflow_id}</span>
+          </div>
+          <p>Updates an existing workflow with new configuration.</p>
+        </div>
+
+        <h2 id="delete-workflow">Delete Workflow</h2>
+        <div class="api-endpoint">
+          <div class="api-method">
+            <span class="method-badge method-delete">DELETE</span>
+            <span class="api-path">/v1/workflows/{workflow_id}</span>
+          </div>
+          <p>Permanently deletes a workflow. This action cannot be undone.</p>
+        </div>
+
+        <h2 id="trigger-workflow">Trigger Workflow</h2>
+        <div class="api-endpoint">
+          <div class="api-method">
+            <span class="method-badge method-post">POST</span>
+            <span class="api-path">/v1/workflows/{workflow_id}/trigger</span>
+          </div>
+          <p>Manually triggers a workflow execution with the provided input data.</p>
+        </div>
+
+        <h3>Example Request</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">cURL</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>curl -X POST https://api.xom3.org/v1/workflows/wf_abc123/trigger \
+  -H "Authorization: Bearer xom3_sk_live_xxxxx" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "I need help with my billing",
+    "customer": {
+      "email": "john@example.com",
+      "name": "John Doe"
+    }
+  }'</pre>
+        </div>
+
+        <h2 id="list-executions">List Executions</h2>
+        <div class="api-endpoint">
+          <div class="api-method">
+            <span class="method-badge method-get">GET</span>
+            <span class="api-path">/v1/executions</span>
+          </div>
+          <p>Returns a list of workflow executions.</p>
+        </div>
+
+        <h2 id="get-execution">Get Execution</h2>
+        <div class="api-endpoint">
+          <div class="api-method">
+            <span class="method-badge method-get">GET</span>
+            <span class="api-path">/v1/executions/{execution_id}</span>
+          </div>
+          <p>Retrieves detailed information about a specific execution, including step-by-step logs.</p>
+        </div>
+
+        <h2 id="create-agent">Create AI Agent</h2>
+        <div class="api-endpoint">
+          <div class="api-method">
+            <span class="method-badge method-post">POST</span>
+            <span class="api-path">/v1/agents</span>
+          </div>
+          <p>Creates a new AI agent with the specified configuration.</p>
+        </div>
+
+        <h3>Example Request</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">JSON</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>{
+  "name": "Sales Assistant",
+  "model": "gpt-4",
+  "system_prompt": "You are a helpful sales assistant...",
+  "tools": ["search_products", "check_inventory", "create_quote"],
+  "temperature": 0.7
+}</pre>
+        </div>
+
+        <h2 id="agent-chat">Chat with Agent</h2>
+        <div class="api-endpoint">
+          <div class="api-method">
+            <span class="method-badge method-post">POST</span>
+            <span class="api-path">/v1/agents/{agent_id}/chat</span>
+          </div>
+          <p>Send a message to an AI agent and receive a response.</p>
+        </div>
+
+        <h3>Example Request</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">cURL</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>curl -X POST https://api.xom3.org/v1/agents/agent_xyz/chat \
+  -H "Authorization: Bearer xom3_sk_live_xxxxx" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "What products do you have under $100?",
+    "session_id": "sess_abc123"
+  }'</pre>
+        </div>
+
+        <h3>Example Response</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">JSON</span>
+          </div>
+          <pre>{
+  "id": "msg_def456",
+  "agent_id": "agent_xyz",
+  "session_id": "sess_abc123",
+  "message": "I found 15 products under $100! Here are the top picks...",
+  "tools_used": ["search_products"],
+  "tokens": {
+    "input": 45,
+    "output": 128
+  },
+  "created_at": "2024-01-15T10:35:00Z"
+}</pre>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="8" fill="url(#footer-logo-gradient2)"/>
+            <path d="M12 14L20 10L28 14V20L20 24L12 20V14Z" stroke="#050508" stroke-width="2" fill="none"/>
+            <path d="M20 24V30" stroke="#050508" stroke-width="2"/>
+            <path d="M12 14L20 18L28 14" stroke="#050508" stroke-width="2"/>
+            <circle cx="20" cy="18" r="2" fill="#050508"/>
+            <defs>
+              <linearGradient id="footer-logo-gradient2" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#00D9FF"/>
+                <stop offset="1" stop-color="#7C3AED"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="nav-logo-text">XOM3</span>
+        </a>
+        <p>Xtension of Me - The AI automation platform that extends your capabilities.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Documentation</h4>
+        <ul class="footer-links">
+          <li><a href="/getting-started">Getting Started</a></li>
+          <li><a href="/features">Features</a></li>
+          <li><a href="/api-reference">API Reference</a></li>
+          <li><a href="/faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul class="footer-links">
+          <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/features#integrations">Integrations</a></li>
+          <li><a href="/features#security">Security</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2024 XOM3. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "xom3-docs",
+  "version": "1.0.0",
+  "description": "XOM3 (Xtension of Me) - AI Automation Platform Documentation",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "build": "echo 'Static site - no build required'",
+    "start": "npx serve . -p 3000"
+  },
+  "keywords": [
+    "xom3",
+    "ai",
+    "automation",
+    "documentation"
+  ],
+  "author": "XOM3",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get started with XOM3 - Set up your AI automation platform in minutes.">
+  <title>Getting Started - XOM3 Documentation</title>
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+</head>
+<body>
+  <!-- Sacred Geometry Background -->
+  <div class="sacred-background">
+    <div class="grid-overlay"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Mobile Menu Button -->
+  <button class="mobile-menu-btn" onclick="toggleSidebar()">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
+
+  <div class="docs-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="/" class="logo">
+          <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="8" fill="url(#logoGrad)"/>
+            <path d="M12 14L20 10L28 14V20L20 24L12 20V14Z" stroke="white" stroke-width="2" fill="none"/>
+            <path d="M20 24V30" stroke="white" stroke-width="2"/>
+            <path d="M12 14L20 18L28 14" stroke="white" stroke-width="2"/>
+            <circle cx="20" cy="18" r="2" fill="white"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40">
+                <stop offset="0%" stop-color="#00D9FF"/>
+                <stop offset="100%" stop-color="#7C3AED"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div>
+            <div class="logo-text">XOM3</div>
+            <div class="logo-tagline">Xtension of Me</div>
+          </div>
+        </a>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <div class="nav-title">Documentation</div>
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="/" class="nav-link">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/getting-started.html" class="nav-link active">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                </svg>
+                Getting Started
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/features.html" class="nav-link">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                Features
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/api-reference.html" class="nav-link">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+                API Reference
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/pricing.html" class="nav-link">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                Pricing
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/faq.html" class="nav-link">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                FAQ
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-title">Resources</div>
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="https://github.com/xom3" class="nav-link" target="_blank">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                GitHub
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://discord.gg/xom3" class="nav-link" target="_blank">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                Community
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="docs-header">
+        <div class="breadcrumb">
+          <a href="/">Docs</a>
+          <span>/</span>
+          <span>Getting Started</span>
+        </div>
+        <h1 class="page-title">Getting Started</h1>
+        <p class="page-description">
+          Set up your XOM3 account and create your first AI-powered automation in under 5 minutes.
+        </p>
+      </header>
+
+      <!-- Prerequisites -->
+      <section class="content-section">
+        <h2 class="section-title">
+          <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+          Prerequisites
+        </h2>
+        <div class="callout callout-info">
+          <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <div>
+            <strong>Before you begin:</strong> Make sure you have Node.js 18+ installed and a XOM3 account. 
+            Sign up at <a href="https://app.xom3.org" style="color: var(--cyan);">app.xom3.org</a> if you haven't already.
+          </div>
+        </div>
+      </section>
+
+      <!-- Installation Steps -->
+      <section class="content-section">
+        <h2 class="section-title">
+          <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          Quick Start Guide
+        </h2>
+        
+        <div class="steps">
+          <div class="step">
+            <h3 class="step-title">Install the XOM3 SDK</h3>
+            <div class="step-content">
+              <p>Install the official XOM3 SDK using npm or yarn:</p>
+              <div class="code-block">
+                <div class="code-header">
+                  <span class="code-language">Bash</span>
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                  </button>
+                </div>
+                <pre><code>npm install @xom3/sdk
+<span class="token-comment"># or</span>
+yarn add @xom3/sdk</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <h3 class="step-title">Get Your API Key</h3>
+            <div class="step-content">
+              <p>Navigate to your <a href="https://app.xom3.org/settings/api" style="color: var(--cyan);">XOM3 Dashboard</a> and generate an API key.</p>
+              <div class="callout callout-warning">
+                <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                <div>
+                  <strong>Keep it secret!</strong> Never commit your API key to version control. Use environment variables instead.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <h3 class="step-title">Initialize the Client</h3>
+            <div class="step-content">
+              <p>Create a new file and initialize the XOM3 client:</p>
+              <div class="code-block">
+                <div class="code-header">
+                  <span class="code-language">JavaScript</span>
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                  </button>
+                </div>
+                <pre><code><span class="token-keyword">import</span> { XOM3 } <span class="token-keyword">from</span> <span class="token-string">'@xom3/sdk'</span>;
+
+<span class="token-comment">// Initialize with your API key</span>
+<span class="token-keyword">const</span> xom3 = <span class="token-keyword">new</span> <span class="token-function">XOM3</span>({
+  apiKey: process.env.XOM3_API_KEY,
+  <span class="token-comment">// Optional: specify region</span>
+  region: <span class="token-string">'us-east-1'</span>
+});</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <h3 class="step-title">Create Your First Workflow</h3>
+            <div class="step-content">
+              <p>Build an AI-powered automation workflow:</p>
+              <div class="code-block">
+                <div class="code-header">
+                  <span class="code-language">JavaScript</span>
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                  </button>
+                </div>
+                <pre><code><span class="token-comment">// Create a customer support automation</span>
+<span class="token-keyword">const</span> workflow = <span class="token-keyword">await</span> xom3.workflows.<span class="token-function">create</span>({
+  name: <span class="token-string">'Customer Support Agent'</span>,
+  description: <span class="token-string">'AI-powered customer support'</span>,
+  
+  <span class="token-comment">// Define triggers</span>
+  triggers: [{
+    type: <span class="token-string">'webhook'</span>,
+    config: { path: <span class="token-string">'/support'</span> }
+  }],
+  
+  <span class="token-comment">// Define actions</span>
+  actions: [
+    {
+      type: <span class="token-string">'ai_classify'</span>,
+      config: {
+        categories: [<span class="token-string">'billing'</span>, <span class="token-string">'technical'</span>, <span class="token-string">'general'</span>]
+      }
+    },
+    {
+      type: <span class="token-string">'ai_respond'</span>,
+      config: {
+        model: <span class="token-string">'gpt-4'</span>,
+        systemPrompt: <span class="token-string">'You are a helpful support agent...'</span>
+      }
+    },
+    {
+      type: <span class="token-string">'send_email'</span>,
+      config: {
+        to: <span class="token-string">'{{customer.email}}'</span>
+      }
+    }
+  ]
+});
+
+console.<span class="token-function">log</span>(<span class="token-string">'Workflow created!'</span>, workflow.id);</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <h3 class="step-title">Test Your Workflow</h3>
+            <div class="step-content">
+              <p>Trigger your workflow with a test request:</p>
+              <div class="code-block">
+                <div class="code-header">
+                  <span class="code-language">Bash</span>
+                  <button class="copy-btn" onclick="copyCode(this)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                  </button>
+                </div>
+                <pre><code>curl -X POST https://api.xom3.org/workflows/YOUR_WORKFLOW_ID/trigger \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"message": "I need help with my billing", "customer": {"email": "test@example.com"}}'</code></pre>
+              </div>
+              <div class="callout callout-success">
+                <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <div>
+                  <strong>Congratulations!</strong> You've created your first XOM3 automation. Check your dashboard for execution logs.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Next Steps -->
+      <section class="content-section">
+        <h2 class="section-title">
+          <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 16 16 12 12 8"></polyline>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+          </svg>
+          Next Steps
+        </h2>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <h3 class="card-title">Explore Features</h3>
+            <p class="card-description">
+              Discover AI agents, voice integration, and advanced automation capabilities.
+            </p>
+            <a href="/features.html" class="card-link">
+              View all features
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+          
+          <div class="card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <h3 class="card-title">API Reference</h3>
+            <p class="card-description">
+              Dive deep into our REST API with comprehensive endpoint documentation.
+            </p>
+            <a href="/api-reference.html" class="card-link">
+              Read API docs
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+          
+          <div class="card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <h3 class="card-title">Join Community</h3>
+            <p class="card-description">
+              Connect with other XOM3 users, share workflows, and get help.
+            </p>
+            <a href="https://discord.gg/xom3" class="card-link" target="_blank">
+              Join Discord
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="docs-footer">
+        <p>XOM3 - Xtension of Me. Built for the future.</p>
+        <nav class="footer-nav">
+          <a href="/pricing.html">Pricing</a>
+          <a href="/faq.html">FAQ</a>
+          <a href="https://github.com/xom3">GitHub</a>
+        </nav>
+      </footer>
+    </main>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
